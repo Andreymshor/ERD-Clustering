@@ -6,6 +6,15 @@ import numpy as np
 import shutil
 import os
 
+def create_label_map(label_map_name, labels):
+    with open(label_map_name, 'w') as f:
+        for label in labels:
+            f.write('item { \n')
+            f.write('\tname:\'{}\'\n'.format(label['name']))
+            f.write('\tid:{}\n'.format(label['id']))
+            f.write('}\n')
+
+
 def get_files(path):
     for file in os.listdir(path):
         if os.path.isfile(os.path.join(path, file)):
@@ -52,6 +61,10 @@ def main():
     PATH = "/home/andrusha/Desktop/Projects/ERD-Clustering/ERDs/Collection_1"
     TRAIN_PATH = "/home/andrusha/Desktop/Projects/ERD-Clustering/ERDs/train"
     TEST_PATH = "/home/andrusha/Desktop/Projects/ERD-Clustering/ERDs/test"
+    
+    LABEL_MAP_NAME = 'label_map.pbtxt'
+    labels = [{'name':'entity', 'id':1}, {'name':'weak_entity', 'id':2}, {'name':'rel', 'id':3}, {'name':'ident_rel', 'id':4}, {'name':'rel_attr', 'id':5}, {'name':'many', 'id':6}, {'name':'one', 'id':7}]
+
     data = get_data(PATH)
     X_train, X_test = get_split(data)
     move_files(X_train, X_test, PATH, TRAIN_PATH, TEST_PATH)

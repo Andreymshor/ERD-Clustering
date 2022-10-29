@@ -16,12 +16,4 @@ CUSTOM_MODEL_NAME = 'my_efficient_det_d6'
 PRETRAINED_MODEL_NAME = 'efficientdet_d6_coco17_tpu-32'
 PRETRAINED_MODEL_URL = 'http://download.tensorflow.org/models/object_detection/tf2/20200711/efficientdet_d6_coco17_tpu-32.tar.gz'
 TF_RECORD_SCRIPT_NAME = 'generate_tfrecord.py'
-LABEL_MAP_NAME = 'label_map.pbtxt'
 
-labels = [{'name':'entity', 'id':1}, {'name':'weak_entity', 'id':2}, {'name':'rel', 'id':3}, {'name':'ident_rel', 'id':4}, {'name':'rel_attr', 'id':5}, {'name':'many', 'id':6}, {'name':'one', 'id':7}]
-with open(LABEL_MAP_NAME, 'w') as f:
-    for label in labels:
-        f.write('item { \n')
-        f.write('\tname:\'{}\'\n'.format(label['name']))
-        f.write('\tid:{}\n'.format(label['id']))
-        f.write('}\n')
