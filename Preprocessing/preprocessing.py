@@ -7,7 +7,8 @@ import shutil
 import os
 
 def create_label_map(label_map_name, labels):
-    with open(label_map_name, 'w') as f:
+    location = '/home/andrusha/Desktop/Projects/ERD-Clustering/ERDs/' + label_map_name
+    with open(location, 'w') as f:
         for label in labels:
             f.write('item { \n')
             f.write('\tname:\'{}\'\n'.format(label['name']))
@@ -31,19 +32,25 @@ def get_data(path):
     png_list = np.array(sorted(png_list))
     xml_list = np.array(sorted(xml_list))
     data = np.array([png_list, xml_list]).T
-    #print(len(data[0]))
+    #print(data)
     data = data.reshape(len(data), 2)
     return data
 
 def get_split(data):
     #print(data)
-    X_train, X_test = train_test_split(data, test_size=.2) # Used 80-20 split on the data
-    print(X_train)
-    print('---------------------------')
-    print(X_test)
+    X_train, X_test = train_test_split(data, test_size=.2, random_state=42) # Used 80-20 split on the data, included seed for reproducability
+    # print(X_train)
+    # print('---------------------------')
+    # print(X_test)
     return X_train, X_test
 
 def move_files(X_train, X_test, path, train_path, test_path):
+    if not os.path.exists(train_path):
+        os.makedirs(train_path)
+    
+    if not os.path.exists(test_path):
+        os.makedirs(test_path)
+        
     for png_file, xml_file in X_train: 
         src_path_png = path + '/' + png_file
         src_path_xml = path + '/' + xml_file
@@ -64,11 +71,11 @@ def main():
     
     LABEL_MAP_NAME = 'label_map.pbtxt'
     labels = [{'name':'entity', 'id':1}, {'name':'weak_entity', 'id':2}, {'name':'rel', 'id':3}, {'name':'ident_rel', 'id':4}, {'name':'rel_attr', 'id':5}, {'name':'many', 'id':6}, {'name':'one', 'id':7}]
-
+    create_label_map(LABEL_MAP_NAME, labels) # move generated file to preprocessing
     data = get_data(PATH)
     X_train, X_test = get_split(data)
     move_files(X_train, X_test, PATH, TRAIN_PATH, TEST_PATH)
-    
+    print("DONE!")
 
 
 if __name__ == '__main__':
