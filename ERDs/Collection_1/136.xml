@@ -1,7 +1,7 @@
 <annotation>
 	<folder>Collection_1</folder>
 	<filename>136.png</filename>
-	<path>C:\Users\Eddy\Documents\CS 473 Web Search\Final Project\ERD-Clustering\ERDs\Collection_1\136.png</path>
+	<path>/home/andrusha/Desktop/Projects/ERD-Clustering/ERDs/Collection_1/136.png</path>
 	<source>
 		<database>Unknown</database>
 	</source>
@@ -117,78 +117,6 @@
 			<ymin>1201</ymin>
 			<xmax>1902</xmax>
 			<ymax>1361</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>rel_type</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>253</xmin>
-			<ymin>1139</ymin>
-			<xmax>299</xmax>
-			<ymax>1207</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>rel_type</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>1127</xmin>
-			<ymin>1847</ymin>
-			<xmax>1173</xmax>
-			<ymax>1893</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>rel_type</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>1156</xmin>
-			<ymin>1956</ymin>
-			<xmax>1219</xmax>
-			<ymax>2027</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>rel_type</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>1162</xmin>
-			<ymin>2179</ymin>
-			<xmax>1273</xmax>
-			<ymax>2233</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>rel_type</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>1947</xmin>
-			<ymin>1804</ymin>
-			<xmax>2042</xmax>
-			<ymax>1859</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>rel_type</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>1170</xmin>
-			<ymin>667</ymin>
-			<xmax>1205</xmax>
-			<ymax>716</ymax>
 		</bndbox>
 	</object>
 </annotation>

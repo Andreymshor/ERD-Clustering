@@ -1,7 +1,7 @@
 <annotation>
 	<folder>Collection_1</folder>
 	<filename>082.png</filename>
-	<path>C:\Users\Eddy\Documents\CS 473 Web Search\Final Project\ERD-Clustering\ERDs\Collection_1\082.png</path>
+	<path>/home/andrusha/Desktop/Projects/ERD-Clustering/ERDs/Collection_1/082.png</path>
 	<source>
 		<database>Unknown</database>
 	</source>
@@ -261,18 +261,6 @@
 			<ymin>282</ymin>
 			<xmax>3563</xmax>
 			<ymax>443</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>rel_type</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>1921</xmin>
-			<ymin>1757</ymin>
-			<xmax>1999</xmax>
-			<ymax>1840</ymax>
 		</bndbox>
 	</object>
 </annotation>

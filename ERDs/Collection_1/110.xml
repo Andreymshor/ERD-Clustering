@@ -1,7 +1,7 @@
 <annotation>
 	<folder>Collection_1</folder>
 	<filename>110.png</filename>
-	<path>C:\Users\Eddy\Documents\CS 473 Web Search\Final Project\ERD-Clustering\ERDs\Collection_1\110.png</path>
+	<path>/home/andrusha/Desktop/Projects/ERD-Clustering/ERDs/Collection_1/110.png</path>
 	<source>
 		<database>Unknown</database>
 	</source>
@@ -201,102 +201,6 @@
 			<ymin>58</ymin>
 			<xmax>3005</xmax>
 			<ymax>305</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>rel_type</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>766</xmin>
-			<ymin>1413</ymin>
-			<xmax>855</xmax>
-			<ymax>1471</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>rel_type</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>642</xmin>
-			<ymin>292</ymin>
-			<xmax>732</xmax>
-			<ymax>355</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>rel_type</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>1360</xmin>
-			<ymin>92</ymin>
-			<xmax>1453</xmax>
-			<ymax>152</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>rel_type</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>2400</xmin>
-			<ymin>94</ymin>
-			<xmax>2489</xmax>
-			<ymax>150</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>rel_type</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>1034</xmin>
-			<ymin>810</ymin>
-			<xmax>1126</xmax>
-			<ymax>868</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>rel_type</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>2750</xmin>
-			<ymin>805</ymin>
-			<xmax>2855</xmax>
-			<ymax>863</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>rel_type</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>2218</xmin>
-			<ymin>1476</ymin>
-			<xmax>2305</xmax>
-			<ymax>1563</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>rel_type</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>3205</xmin>
-			<ymin>652</ymin>
-			<xmax>3292</xmax>
-			<ymax>705</ymax>
 		</bndbox>
 	</object>
 </annotation>
