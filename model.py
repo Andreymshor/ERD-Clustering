@@ -7,5 +7,4 @@
 # rel_attr: an attribute that belongs to a relationship, looks like an oval/eclipse
 # many: appears at the end of a connection, has 3 lines coming out of it. Can have a O before the 3 lines, still counts as many.
 # one: appears at the end of a connection, has 1 or 2 vertical lines like so: ||. Can have a O before the 2 lines, still counts as one.
-# rel_type: used for connections that don't follow standard format. These connections look like so: "1..*", "*..1", etc
 labels = ['entity', 'weak_entity', 'rel', 'ident_rel', 'rel_attr', 'many', 'one']
