@@ -1,0 +1,28 @@
+item { 
+	name:'entity'
+	id:1
+}
+item { 
+	name:'weak_entity'
+	id:2
+}
+item { 
+	name:'rel'
+	id:3
+}
+item { 
+	name:'ident_rel'
+	id:4
+}
+item { 
+	name:'rel_attr'
+	id:5
+}
+item { 
+	name:'many'
+	id:6
+}
+item { 
+	name:'one'
+	id:7
+}
