@@ -1,7 +1,7 @@
 <annotation>
 	<folder>Collection_1</folder>
 	<filename>088.png</filename>
-	<path>C:\Users\Eddy\Documents\CS 473 Web Search\Final Project\ERD-Clustering\ERDs\Collection_1\088.png</path>
+	<path>/home/andrusha/Desktop/Projects/ERD-Clustering/ERDs/Collection_1/088.png</path>
 	<source>
 		<database>Unknown</database>
 	</source>
@@ -180,7 +180,7 @@
 		</bndbox>
 	</object>
 	<object>
-		<name>indent_rel</name>
+		<name>ident_rel</name>
 		<pose>Unspecified</pose>
 		<truncated>0</truncated>
 		<difficult>0</difficult>
@@ -192,7 +192,7 @@
 		</bndbox>
 	</object>
 	<object>
-		<name>indent_rel</name>
+		<name>ident_rel</name>
 		<pose>Unspecified</pose>
 		<truncated>0</truncated>
 		<difficult>0</difficult>
