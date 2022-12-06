@@ -1,0 +1,2 @@
+dataset4_K_2/C1/Synth_001.png dataset4_K_2/C1/synth_002.png dataset4_K_2/C2/synth_003.png dataset4_K_2/C2/synth_004.png
+2
