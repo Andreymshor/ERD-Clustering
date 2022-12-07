@@ -42,20 +42,16 @@ MODEL_CONFIG = CONFIG_DIR['model']
 TEST_IMAGE_PATHS = glob.glob('customTF2/data/test_labels_jpg/*.jpg')
 
 def get_img_paths(parameters):
-    img_paths, K = parameters.parameters_txt.readline().strip().split(), int(parameters.parameters_txt.readline())
-    dir_name = img_paths[0].split('/')[0]
-    gt_clusters = {}
-    i = 1
-    for cluster_name in sorted(list(os.walk(dir_name)))[1:]:
-        paths = []
-        for img_path in img_paths:
-            if cluster_name[0] in img_path:
-                paths.append(img_path)
-        gt_clusters[i] = paths
-        i += 1
-        
+    img_path, K = parameters.parameters_txt.readline().strip(), int(parameters.parameters_txt.readline())
+    directory = os.getcwd() + '/' + parameters.parameters_txt.name.split('/')[0] + '/' + img_path
+    print(directory)
+    print(img_path)
+    paths = next(os.walk(directory), (None, None, []))[2]
     
-    return gt_clusters, K
+
+    paths = [parameters.parameters_txt.name.split('/')[0] + '/' + img_path + '/' + path for path in paths]
+    # print(sorted(paths))
+    return sorted(paths), K
 
 def ODM(image_path): #A function for conducting object detection (Module 1)
     detection_model = model_builder.build(model_config=MODEL_CONFIG, is_training=False)
@@ -203,11 +199,11 @@ def silhouette(X):
         sil_scores.append((k, silhouette_avg))
     
     optimal_k = max(sil_scores, key = lambda x: x[1])[0]
-    print(optimal_k)
+    # print(optimal_k)
     return optimal_k
 
 # a function for conducting Kmeans
-def baseKMeans(K, documents,gt_clusters, filename, mode=1):
+def baseKMeans(K, imgs, documents, filename, mode=1):
     # documents = ['rel attr weak ent flight nation rture tim rel attr rel attr rel attr entiti entiti entiti two-way trip pk number class price book bboking airlin entiti', 'rel attr rel attr entiti luuu entiti weak ent entiti airlin name rate weak ent de de', 'entiti bag rel attr entiti rel attr entiti round trip id inat imum bag arture datetime to al datetim tion to arture datetime from al datetime from tion datetime from entiti one way trip pk trip id class price origin destin maximum bag departure datetim arrival datetim durat', 'weak ent flight pk origin destin departure date-tim arrival date-tim entiti weak ent two-way trip k number class entiti pk name rate weak ent one-way trip pk number class rel attr rel attr rel attr rel attr', 'weak ent round-t pk number class price origin destin maximum nun weak ent one-way pk number class price origin destin departure d arrival date-tin durat maximum num entiti flight flight numb departure date-tim arrival date-tim durat entiti ig typ aximum weight entiti rel attr rel attr', 'rel attr entiti flight liahtnumb rel attr rel attr entiti eutit trip entiti rate weak ent numtyp maximumweight', 'weak ent flight pk,fk number origin departure date tim destination arrival date tim destination arrival date tim origin to destination dur destination departure date time nul origin arrivial date time nul destin to origin duration nul comment: in q1, making on table for flight: return flight entiti entiti trip pk number type class price entiti rel attr maximum   numb rel attr', 'entiti pe nam aximum weight flight llight numb departure date tim arriv date time durat rel attr entiti entiti entiti trip pk trip numb class origin price', 'entiti rel attr entiti entiti trip pk uid type class origin destin price entiti flig pk flight uid origin destin departure-- arrival-tim durat', 'entiti pk name rate rel attr rel attr rel attr rel attr entiti trip pk number class price type rel attr entiti weight bag rel attr rel attr', 'rel attr entiti "9 entiti bag pe ax weight entiti trip pk uniqueld class price rel attr entiti one-w pk uniqueld entiti entiti']
     
     if mode==1:
@@ -215,10 +211,10 @@ def baseKMeans(K, documents,gt_clusters, filename, mode=1):
         a = count_vectorizer.fit_transform(documents).toarray()
         X = np.where(a != 0, np.log10(a) + 1, 0) # apply log10(tf) + 1
         X_std = StandardScaler().fit_transform(X)
-        print(X_std.shape)
+        #print(X_std.shape)
         lsa = make_pipeline(TruncatedSVD(n_components=5), Normalizer(copy=False)) # eliminating unneccessary dimensions
         X_lsa = lsa.fit_transform(X_std)
-        print(X_lsa.shape)
+        #print(X_lsa.shape)
     elif mode==2:
         documents = [sent.translate(str.maketrans('', '', '!"#$%&\'()*+,-./:;<=>?@[\]^`{|}~')) for sent in documents]
         tokenized_docs = [nltk.word_tokenize(doc) for doc in documents]
@@ -239,60 +235,57 @@ def baseKMeans(K, documents,gt_clusters, filename, mode=1):
     kmeans.fit_predict(X_lsa)
     clusters = kmeans.labels_ + 1
     
-    docs = []
-    gtc = []
-    for k,v in gt_clusters.items():
-        for i in v:
-            gtc.append(k)
-        docs.extend(v)
 
 
-    docs = [doc.split('/')[-1] for doc in docs]
+    imgs = [img.split('/')[-1] for img in imgs]
 
     pred_cluster_dict = OrderedDict()
-    for c, doc in zip(clusters, docs):
+    for c, img in zip(clusters, imgs):
         if 'C' + str(c) not in pred_cluster_dict:
-            pred_cluster_dict['C' + str(c)] = [doc]
+            pred_cluster_dict['C' + str(c)] = [img]
         else:
-            pred_cluster_dict['C' + str(c)].append(doc)
+            pred_cluster_dict['C' + str(c)].append(img)
 
-    rs = rand_score(gtc, clusters)
+    #rs = rand_score(gtc, clusters)
     with open(filename, 'w') as f:
-        for k,v in pred_cluster_dict.items():
-            f.write(f"{k}: {v}")
+        for k in sorted(pred_cluster_dict.keys()):
+            f.write(f"{k}: {pred_cluster_dict[k]}")
             f.write('\n')
         
-        f.write(f"rand index: {str(rs)}")
+        #f.write(f"rand index: {str(rs)}")
 
     return sil_K
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--parameters_txt', type=argparse.FileType('r'), required=True, help='text file containing ERD Image paths')
+    parser.add_argument('--parameters_txt', type=argparse.FileType('r'), required=True, help='Text file containing ERD Image paths')
+    #parser.add_argument('--rand_score', default=False, action="store_true", help='Flag used for determining rather or not to use rand score')
     parameters = parser.parse_args()
+   # print(parameters.rand_score)
     print("getting ground_truth clusters")
-    gt_clusters, K = get_img_paths(parameters)
+    imgs, K = get_img_paths(parameters)
+
     documents = []
-    for cluster, imgs in gt_clusters.items():
-        for img in imgs:
-            print(f'Conducting Object Detection on {img} from ground truth cluster {cluster}')
-            path, detections, idx, categories = ODM(img)
-            print(f'Conducting Optical Character Recognition on {img} from ground truth cluster {cluster}')
-            results = OCRM(path, detections, idx, categories)
-            print(f'Preprocessing Vocabulary for text from {img} from ground truth cluster {cluster}')
-            documents.append(preprocess(results))
+    for img in imgs:
+
+        print(f'Conducting Object Detection on {img}')
+        path, detections, idx, categories = ODM(img)
+        print(f'Conducting Optical Character Recognition on {img}')
+        results = OCRM(path, detections, idx, categories)
+        print(f'Preprocessing Vocabulary for text from {img}')
+        documents.append(preprocess(results))
     print('Finished extracting text from all images')
 
 
 
     print('Conducting K-Means++ on Documents (Module 4)')
     
-    sil_K = baseKMeans(K, documents, gt_clusters, filename='module_4.txt', mode=1) # utilizing module 4 to find optimal # of clusters
+    sil_K = baseKMeans(K, imgs, documents, filename='module_4.txt', mode=1) # utilizing module 4 to find optimal # of clusters
     print('Conducting K-Means++ using FastText embeddings (Module 5)')
     if sil_K > 0:
         K = sil_K
-    baseKMeans(K, documents, gt_clusters, filename='module_5.txt', mode=2)
+    baseKMeans(K, imgs, documents, filename='module_5.txt', mode=2)
 
 
 

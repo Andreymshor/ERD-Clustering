@@ -1,6 +1,2 @@
-C3: ['064.png', '121.png', '104.png']
-C2: ['092.png', '134.png']
-C5: ['112.png']
-C4: ['081.png']
-C1: ['099.png']
-rand index: 0.6428571428571429
+C1: ['Synth_001.png', 'synth_003.png', 'synth_004.png']
+C2: ['synth_002.png']
